@@ -1,0 +1,93 @@
+# Copyright 2017, 2021 Oracle Corporation and/or affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+# Identity and access parameters
+api_fingerprint      = ""
+# api_private_key      = <<EOT
+#-----BEGIN RSA PRIVATE KEY-----
+#content+of+api+key
+#-----END RSA PRIVATE KEY-----
+#EOT
+
+api_private_key_path = ""
+
+home_region = "us-ashburn-1"
+region = "us-phoenix-1"
+
+tenancy_id           = ""
+user_id              = ""
+
+# general oci parameters
+compartment_id = ""
+label_prefix   = "dev"
+
+# ssh keys
+ssh_private_key      = ""
+# ssh_private_key    = <<EOT
+#-----BEGIN RSA PRIVATE KEY-----
+#content+of+api+key
+#-----END RSA PRIVATE KEY-----
+#EOT
+ssh_private_key_path = "~/.ssh/id_rsa"
+# ssh_public_key       = ""
+# ssh_public_key_path  = "none"
+# ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+# networking
+create_drg       = false
+drg_display_name = "drg"
+drg_id           = null
+
+internet_gateway_route_rules = [
+#   {
+#     destination       = "192.168.0.0/16" # Route Rule Destination CIDR
+#     destination_type  = "CIDR_BLOCK"     # only CIDR_BLOCK is supported at the moment
+#     network_entity_id = "drg"            # for internet_gateway_route_rules input variable, you can use special strings "drg", "internet_gateway" or pass a valid OCID using string or any Named Values
+#     description       = "Terraformed - User added Routing Rule: To drg provided to this module. drg_id, if available, is automatically retrieved with keyword drg"
+#   },
+]
+
+local_peering_gateways = {}
+
+lockdown_default_seclist = true
+
+nat_gateway_route_rules = [
+#   {
+#     destination       = "192.168.0.0/16" # Route Rule Destination CIDR
+#     destination_type  = "CIDR_BLOCK"     # only CIDR_BLOCK is supported at the moment
+#     network_entity_id = "drg"            # for nat_gateway_route_rules input variable, you can use special strings "drg", "nat_gateway" or pass a valid OCID using string or any Named Values
+#     description       = "Terraformed - User added Routing Rule: To drg provided to this module. drg_id, if available, is automatically retrieved with keyword drg"
+#   },
+]
+
+nat_gateway_public_ip_id = "none"
+
+subnets = {
+  bastion  = { netnum = 0, newbits = 13 }
+  operator = { netnum = 1, newbits = 13 }
+  cp       = { netnum = 2, newbits = 13 }
+  int_lb   = { netnum = 16, newbits = 11 }
+  pub_lb   = { netnum = 17, newbits = 11 }
+  workers  = { netnum = 1, newbits = 2 }
+  fss      = { netnum = 18, newbits = 11 }
+}
+
+create_vcn                   = true
+vcn_cidrs                    = ["10.0.0.0/16"]
+vcn_dns_label                = "capoci"
+vcn_name                     = "capoci"
+vcn_display_name             = ""
+vcn_id                       = ""
+ig_route_table_display_name  = ""
+ig_route_table_id            = ""
+nat_route_table_display_name = ""
+nat_route_table_id           = ""
+
+# freeform_tags
+freeform_tags = {
+  # vcn, bastion and operator freeform_tags are required
+  # add more freeform_tags in each as desired
+  vcn = {
+    environment = "dev"
+  }
+}
