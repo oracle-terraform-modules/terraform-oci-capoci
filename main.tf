@@ -1,4 +1,4 @@
-# Copyright 2022 Oracle Corporation and/or affiliates.
+# Copyright (c) 2022 Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 module "vcn" {
@@ -45,13 +45,13 @@ module "drg" {
   # drg parameters
   drg_display_name = var.drg_display_name
   drg_vcn_attachments = { for k, v in module.vcn : k => {
-    # gets the vcn_id values dynamically from the vcn module 
+    # gets the vcn_id values dynamically from the vcn module
     vcn_id : v.vcn_id
     vcn_transit_routing_rt_id : null
     drg_route_table_id : null
     }
   }
-  # var.drg_id can either contain an existing DRG ID or be null. 
+  # var.drg_id can either contain an existing DRG ID or be null.
   drg_id = var.drg_id
 
   count = var.create_drg || var.drg_id != null ? 1 : 0
