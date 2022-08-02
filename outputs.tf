@@ -1,7 +1,7 @@
-# Copyright 2017, 2021 Oracle Corporation and/or affiliates.
+# Copyright (c) 2022 Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
-# for reuse 
+# for reuse
 
 output "ig_route_id" {
   description = "id of route table to vcn internet gateway"
@@ -48,4 +48,3 @@ output "vcn_id" {
 # output "bastion_service_instance_id" {
 #   value = var.create_bastion_service == true ? module.bastionsvc[0].bastion_id : "null"
 # }
-

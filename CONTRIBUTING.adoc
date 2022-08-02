@@ -1,36 +1,31 @@
 = CONTRIBUTING
 
-:uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
+:uri-oracle-oca: https://oca.opensource.oracle.com
+:uri-lf-dco: https://developercertificate.org/
 
 Oracle welcomes contributions to this repository from anyone.
 
-If you want to submit a pull request to fix a bug or enhance an existing
-feature, please first open an issue and link to that issue when you
-submit your pull request.
+If you want to submit a pull request to fix a bug or enhance an existing feature, please first open an issue and link to that issue when you submit your pull request.
 
-If you have any questions about a possible submission, feel free to open
-an issue too.
+If you have any questions about a possible submission, feel free to open an issue too.
 
 == Contributing to the terraform-oci-oke repository
 
-Pull requests can be made under
-{uri-oracle-oca}[The Oracle Contributor Agreement](OCA).
-
-For pull requests to be accepted, the bottom of your commit message must have
-the following line using your name and e-mail address as it appears in the
-OCA Signatories list.
+Pull requests are submitted under {uri-oracle-oca}[The Oracle Contributor Agreement] (OCA) and each commit must include the {uri-lf-dco}[Developer's Certificate of Origin] in the form of a `Signed-off-by` statement at the end of the commit message.
 
 ----
 Signed-off-by: Your Name <you@example.org>
 ----
 
-This can be automatically added to pull requests by committing with:
+For pull requests to be accepted, you must use the same name and e-mail address as appears in the OCA signatories list.
+
+The Developer's Certificate of Origin can be automatically added to your commit message by adding the `--signoff` or `-s` parameter:
 
 ----
   git commit --signoff
 ----
 
-Only pull requests from committers that can be verified as having
+Only pull requests from contributors that can be verified as having
 signed the OCA can be accepted.
 
 === Pull request process

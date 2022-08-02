@@ -1,4 +1,4 @@
-# Copyright 2022 Oracle Corporation and/or affiliates.
+# Copyright (c) 2022 Oracle Corporation and/or affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 resource "oci_core_security_list" "control_plane_seclist" {
   compartment_id = var.compartment_id
@@ -31,11 +31,10 @@ resource "oci_core_security_list" "control_plane_seclist" {
       max = 6443
     }
   }
-  
+
   lifecycle {
     ignore_changes = [
       egress_security_rules, ingress_security_rules, defined_tags
     ]
   }
 }
-
