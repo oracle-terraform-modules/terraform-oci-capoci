@@ -214,6 +214,41 @@ variable "vcn_name" {
   type        = string
 }
 
+# control plane
+variable "control_plane_type" {
+  default     = "public"
+  description = "Whether to allow public or private access to the control plane endpoint"
+  type        = string
+
+  validation {
+    condition     = contains(["public", "private"], var.control_plane_type)
+    error_message = "Accepted values are public, or private."
+  }
+}
+
+# load balancers
+variable "load_balancers" {
+  # values: both, internal, public
+  default     = "public"
+  description = "The type of subnets to create for load balancers."
+  type        = string
+  validation {
+    condition     = contains(["public", "internal", "both"], var.load_balancers)
+    error_message = "Accepted values are public, internal or both."
+  }
+}
+
+# workers
+variable "worker_type" {
+  default     = "private"
+  description = "Whether to provision public or private workers."
+  type        = string
+  validation {
+    condition     = contains(["public", "private"], var.worker_type)
+    error_message = "Accepted values are public or private."
+  }
+}
+
 # tagging
 variable "freeform_tags" {
   default = {
