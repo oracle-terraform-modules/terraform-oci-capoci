@@ -56,3 +56,32 @@ module "drg" {
 
   count = var.create_drg || var.drg_id != null ? 1 : 0
 }
+
+# additional networking for oke
+module "network" {
+  source = "./modules/network"
+
+  # general oci parameters
+  compartment_id = var.compartment_id
+  label_prefix   = var.label_prefix
+
+  # oke networking parameters
+  ig_route_id  = local.ig_route_id
+  nat_route_id = local.nat_route_id
+  subnets      = var.subnets
+  vcn_id       = local.vcn_id
+
+
+  # control plane endpoint parameters
+  control_plane_type          = var.control_plane_type
+
+  # worker network parameters
+  worker_type                  = var.worker_type
+
+  # oke load balancer network parameters
+  load_balancers = var.load_balancers
+
+  depends_on = [
+    module.vcn
+  ]
+}
