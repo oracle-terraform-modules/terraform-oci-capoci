@@ -8,7 +8,7 @@ resource "oci_core_security_list" "control_plane_seclist" {
   egress_security_rules {
 
     description      = "Allow Bastion service to communicate to the control plane endpoint. Required for when using OCI Bastion service."
-    destination      = local.cp_subnet
+    destination      = local.cp-subnet
     destination_type = "CIDR_BLOCK"
     protocol         = local.tcp_protocol
     stateless        = false
@@ -22,7 +22,7 @@ resource "oci_core_security_list" "control_plane_seclist" {
   ingress_security_rules {
     description = "Allow Bastion service to communicate to the control plane endpoint. Required for when using OCI Bastion service."
     protocol    = local.tcp_protocol
-    source      = local.cp_subnet
+    source      = local.cp-endpoint-subnet
     source_type = "CIDR_BLOCK"
     stateless   = false
 

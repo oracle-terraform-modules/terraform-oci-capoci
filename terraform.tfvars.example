@@ -63,13 +63,13 @@ nat_gateway_route_rules = [
 nat_gateway_public_ip_id = "none"
 
 subnets = {
-  bastion  = { netnum = 0, newbits = 13 }
-  operator = { netnum = 1, newbits = 13 }
-  cp       = { netnum = 2, newbits = 13 }
-  int_lb   = { netnum = 16, newbits = 11 }
-  pub_lb   = { netnum = 17, newbits = 11 }
-  workers  = { netnum = 1, newbits = 2 }
-  fss      = { netnum = 18, newbits = 11 }
+    bastion        = { netnum = 0, newbits = 14 }
+    operator       = { netnum = 1, newbits = 14 }
+    cp-endpoint    = { netnum = 1, newbits = 13 }
+    cp             = { netnum = 2, newbits = 13 }
+    service-lb-int = { netnum = 1, newbits = 11 }
+    service-lb-pub = { netnum = 2, newbits = 11 }
+    workers        = { netnum = 1, newbits = 6 }
 }
 
 create_vcn                   = true

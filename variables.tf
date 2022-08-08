@@ -147,10 +147,10 @@ variable "drg_display_name" {
   default     = "drg"
 }
 
-variable "drg_id"{
+variable "drg_id" {
   description = "ID of an external created Dynamic Routing Gateway to be attached to the VCN"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "internet_gateway_route_rules" {
@@ -186,12 +186,13 @@ variable "nat_gateway_public_ip_id" {
 variable "subnets" {
   description = "parameters to cidrsubnet function to calculate subnet masks within the VCN."
   default = {
-    bastion  = { netnum = 0, newbits = 13 }
-    operator = { netnum = 1, newbits = 13 }
-    cp       = { netnum = 2, newbits = 13 }
-    int_lb   = { netnum = 16, newbits = 11 }
-    pub_lb   = { netnum = 17, newbits = 11 }
-    workers  = { netnum = 1, newbits = 2 }
+    bastion        = { netnum = 0, newbits = 14 }
+    operator       = { netnum = 1, newbits = 14 }
+    cp-endpoint    = { netnum = 1, newbits = 13 }
+    cp             = { netnum = 2, newbits = 13 }
+    service-lb-int = { netnum = 1, newbits = 11 }
+    service-lb-pub = { netnum = 2, newbits = 11 }
+    workers        = { netnum = 1, newbits = 6 }
   }
   type = map(any)
 }
@@ -260,6 +261,6 @@ variable "freeform_tags" {
   }
   description = "Tags to apply to different resources."
   type = object({
-    vcn      = map(any),
+    vcn = map(any),
   })
 }
