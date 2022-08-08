@@ -16,7 +16,7 @@ resource "oci_core_subnet" "cp-endpoint" {
   cidr_block                 = local.cp-endpoint-subnet
   compartment_id             = var.compartment_id
   display_name               = var.label_prefix == "none" ? "control-plane-endpoint" : "${var.label_prefix}-control-plane-endpoint"
-  dns_label                  = "cp-endpoint"
+  dns_label                  = "cpendpoint"
   prohibit_public_ip_on_vnic = var.control_plane_type == "private" ? true : false
   route_table_id             = var.control_plane_type == "private" ? var.nat_route_id : var.ig_route_id
   security_list_ids          = [oci_core_security_list.control_plane_seclist.id]
