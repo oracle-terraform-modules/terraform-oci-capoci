@@ -8,7 +8,6 @@ resource "oci_core_subnet" "cp" {
   dns_label                  = "cp"
   prohibit_public_ip_on_vnic = var.control_plane_type == "private" ? true : false
   route_table_id             = var.control_plane_type == "private" ? var.nat_route_id : var.ig_route_id
-  security_list_ids          = [oci_core_security_list.control_plane_seclist.id]
   vcn_id                     = var.vcn_id
 }
 
@@ -19,7 +18,7 @@ resource "oci_core_subnet" "cp-endpoint" {
   dns_label                  = "cpendpoint"
   prohibit_public_ip_on_vnic = var.control_plane_type == "private" ? true : false
   route_table_id             = var.control_plane_type == "private" ? var.nat_route_id : var.ig_route_id
-  security_list_ids          = [oci_core_security_list.control_plane_seclist.id]
+  security_list_ids          = [oci_core_security_list.cp-endpoint.id]
   vcn_id                     = var.vcn_id
 }
 
