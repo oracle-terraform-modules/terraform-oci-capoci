@@ -8,17 +8,19 @@ locals {
   vcn_cidr = element(data.oci_core_vcn.vcn.cidr_blocks, 0)
 
   # subnet cidrs - used by subnets
-  bastion_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["bastion"], "newbits"), lookup(var.subnets["bastion"], "netnum"))
+  bastion-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["bastion"], "newbits"), lookup(var.subnets["bastion"], "netnum"))
 
-  cp_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["cp"], "newbits"), lookup(var.subnets["cp"], "netnum"))
+  operator-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["operator"], "newbits"), lookup(var.subnets["operator"], "netnum"))
 
-  int_lb_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["int_lb"], "newbits"), lookup(var.subnets["int_lb"], "netnum"))
+  cp-endpoint-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["cp-endpoint"], "newbits"), lookup(var.subnets["cp-endpoint"], "netnum"))
 
-  operator_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["operator"], "newbits"), lookup(var.subnets["operator"], "netnum"))
+  cp-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["cp"], "newbits"), lookup(var.subnets["cp"], "netnum"))
 
-  pub_lb_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["pub_lb"], "newbits"), lookup(var.subnets["pub_lb"], "netnum"))
+  service-lb-int-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["service-lb-int"], "newbits"), lookup(var.subnets["service-lb-int"], "netnum"))
 
-  workers_subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["workers"], "newbits"), lookup(var.subnets["workers"], "netnum"))
+  service-lb-pub-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["service-lb-pub"], "newbits"), lookup(var.subnets["service-lb-pub"], "netnum"))
+
+  workers-subnet = cidrsubnet(local.vcn_cidr, lookup(var.subnets["workers"], "newbits"), lookup(var.subnets["workers"], "netnum"))
 
   anywhere = "0.0.0.0/0"
 

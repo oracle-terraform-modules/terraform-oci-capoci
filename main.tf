@@ -57,7 +57,7 @@ module "drg" {
   count = var.create_drg || var.drg_id != null ? 1 : 0
 }
 
-# additional networking for oke
+# additional networking for subnets
 module "network" {
   source = "./modules/network"
 
@@ -65,7 +65,7 @@ module "network" {
   compartment_id = var.compartment_id
   label_prefix   = var.label_prefix
 
-  # oke networking parameters
+  # networking parameters
   ig_route_id  = local.ig_route_id
   nat_route_id = local.nat_route_id
   subnets      = var.subnets
@@ -73,15 +73,48 @@ module "network" {
 
 
   # control plane endpoint parameters
-  control_plane_type          = var.control_plane_type
+  control_plane_type = var.control_plane_type
 
   # worker network parameters
-  worker_type                  = var.worker_type
+  worker_type = var.worker_type
 
   # oke load balancer network parameters
   load_balancers = var.load_balancers
 
   depends_on = [
     module.vcn
+  ]
+}
+
+# nsgs for antrea cni
+module "antrea" {
+  source = "./modules/antrea"
+
+  # general oci parameters
+  compartment_id = var.compartment_id
+  label_prefix   = var.label_prefix
+
+  # networking parameters
+  subnets = var.subnets
+  vcn_id  = local.vcn_id
+
+  # control plane endpoint parameters
+  control_plane_type          = "public"
+  control_plane_allowed_cidrs = ["0.0.0.0/0"]
+
+  # worker network parameters
+  allow_node_port_access       = false
+  allow_worker_internet_access = true
+  allow_worker_ssh_access      = var.allow_worker_ssh_access
+  worker_type                  = var.worker_type
+
+  # load balancer network parameters
+  load_balancers = var.load_balancers
+
+  public_lb_allowed_cidrs = var.public_lb_allowed_cidrs
+  public_lb_allowed_ports = var.public_lb_allowed_ports
+
+  depends_on = [
+    module.network
   ]
 }
