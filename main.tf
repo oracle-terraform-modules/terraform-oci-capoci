@@ -99,16 +99,20 @@ module "antrea" {
   vcn_id  = local.vcn_id
 
   # control plane endpoint parameters
-  control_plane_type = "public"
+  control_plane_type          = "public"
   control_plane_allowed_cidrs = ["0.0.0.0/0"]
 
   # worker network parameters
-  allow_node_port_access = false
+  allow_node_port_access       = false
   allow_worker_internet_access = true
-  worker_type = var.worker_type
+  allow_worker_ssh_access      = var.allow_worker_ssh_access
+  worker_type                  = var.worker_type
 
   # load balancer network parameters
-  # load_balancers = var.load_balancers
+  load_balancers = var.load_balancers
+
+  public_lb_allowed_cidrs = var.public_lb_allowed_cidrs
+  public_lb_allowed_ports = var.public_lb_allowed_ports
 
   depends_on = [
     module.network

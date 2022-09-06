@@ -32,27 +32,22 @@ variable "allow_worker_internet_access" {
   type = bool
 }
 
+variable "allow_worker_ssh_access" {
+  type = bool
+}
+
 variable "worker_type" {}
 
-# # load balancers
-# variable "load_balancers" {
-#   type = string
-# }
+# load balancers
+variable "load_balancers" {
+  type = string
+}
 
-# # internal load balancers
-# variable "internal_lb_allowed_cidrs" {
-#   type = list(any)
-# }
+# public load balancers
+variable "public_lb_allowed_cidrs" {
+  type = list(any)
+}
 
-# variable "internal_lb_allowed_ports" {
-#   type = list(any)
-# }
-
-# # public load balancers
-# variable "public_lb_allowed_cidrs" {
-#   type = list(any)
-# }
-
-# variable "public_lb_allowed_ports" {
-#   type = list(any)
-# }
+variable "public_lb_allowed_ports" {
+  type = list(any)
+}

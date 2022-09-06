@@ -239,6 +239,28 @@ variable "load_balancers" {
   }
 }
 
+variable "public_lb_allowed_cidrs" {
+  default     = ["0.0.0.0/0"]
+  description = "The list of CIDR blocks from which the public load balancer can be accessed."
+  type        = list(string)
+
+  validation {
+    condition     = length(var.public_lb_allowed_cidrs) > 0
+    error_message = "At least 1 CIDR block is required."
+  }
+}
+
+variable "public_lb_allowed_ports" {
+  default     = [443]
+  description = "List of allowed ports for public load balancers."
+  type        = list(any)
+
+  validation {
+    condition     = length(var.public_lb_allowed_ports) > 0
+    error_message = "At least 1 port is required."
+  }
+}
+
 # workers
 variable "worker_type" {
   default     = "private"
@@ -248,6 +270,12 @@ variable "worker_type" {
     condition     = contains(["public", "private"], var.worker_type)
     error_message = "Accepted values are public or private."
   }
+}
+
+variable "allow_worker_ssh_access" {
+  default     = false
+  description = "Whether to allow ssh access to worker nodes."
+  type        = bool
 }
 
 # tagging
